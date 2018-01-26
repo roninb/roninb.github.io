@@ -18,7 +18,7 @@ description: Programmer from Earth
 title: Malik, in Space!
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This site is mostly a place to host old projects and share interesting stuff I'm doing. There may be hockey and food and art spattered around, but don't let that distract you from all the gidgets and doodads I write about, too.
+  Malik's Website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: justsayinsaiyan
@@ -38,9 +38,9 @@ plugins:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
+exclude:
+  - Gemfile
+  - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
