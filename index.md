@@ -4,7 +4,6 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 ---
-# Malik in Space
 Hi, I'm Malik and my thoughts tend to not exactly reside here on Earth. This site will host musings and projects as I feel like sharing them. Nothing on this site is guaranteed to stay so if you like it grab it while it's here.
 
 ## Musings
