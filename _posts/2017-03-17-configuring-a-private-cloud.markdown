@@ -23,7 +23,7 @@ My current plan of replacement is as follows:
   - Securing it slightly and accessing it remotely
 - Replace Googe Drive
   - Configure NextCloud
-    - [Finding a calendar and notetaking replacement](../../10/30/drivin-me-crazy-keeping-me-sane.html)
+    - [Finding a calendar and notetaking replacement](../../10/30/drivin-me-crazy-keepin-me-sane.html)
 - Replace GitHub
 - Replace Chrome
   - Configure Firefox Accounts Server
