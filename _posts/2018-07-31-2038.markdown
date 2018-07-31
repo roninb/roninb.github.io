@@ -1,0 +1,17 @@
+---
+layout: post
+title: "2038"
+date: 2018-07-31 12:34:25 -0400
+categories: tech 2038
+---
+_That's what it looks like. In all its glory, kid. That's the bug that paid your way through college..._
+
+I plan on reciting this eventually (maybe when I'm 40 or 50). In fewer than 20 years, the world is going to have a problem that could exceed the loss and mania that followed the Y2K scare. I heard those scoffs from the back. I know, I know. "Y2K wasn't _that_ bad..." And you're right. Our credi cards still worked, planes didn't fall from the sky, and I could call my grandma just as easily on Jan. 1, 2000 as I could the day before. That's thanks (er, thankless, really) to countless network engineers, software architects, project managers, and, ultimately, interns for rewriting all of our XX formated years to the obviously more future proof XXXX.
+
+Now don't forget, I'm supposed to be making a pretty little penny on these 6 litle symbols here and not all date related bugs are created equally. Many of the vulnerable systems that were worried about Y2K are a completely different kind of computer than this here "2038". The issue with Y2K has more to do with convinience and bureaucracy than architecture. Dates were formatted by two digit years, denoting the decade and year, but not century or millennium. This wasn't a problem with record keeping until everyone realized Jesus, the Mayans, and FSM were probably going to wait until _after_ the turn of the century for his second coming. Once everyon woke up, there were a few viable options most stake holders could take to remedy the issue. One of which was to "simply" modify thir databases to use 4-digit years. This was expensive and monotonous, but it worked better than other optinons like adding a field for tracking centuries.
+
+Part of what makes 2038 so sticky is the fact that its use is in a much more critical location. As opposed to being a hacky workaround (no offense intended toward those greybeards, whose shoulders I stand on) to save data, the limitation is inherent to a large swatch of hardware. Any software that uses a data structure based on a 32-bit time signature is possibly vulnerable. This means even if you don't used any 32-bit based data structures yourself, other software running on your machines, filesystems, even the operating systms themselves may fail come Jan. 19th, 2038. This is due to many of this structures being designed to count incrementally from zero second starting Jan. 1st, 1970. This causes a buffer overflow when it hits 2,147,438,647 seconds after the beginning of our digital epoch. The result of an overflowed buffer in this example is a timestamp of 13th of December, 1901. Ironically enough, that's a Friday...
+
+Like I mentioned before, since this bug is so much closer to the metal, the resolutions are much more in depth. Some include introduing a new 64-bit timestamp, leaving backwards compatibility with 32-bit time_t ABIs (such as in Linux's filesystem time stamp's case). Others utilize ISO 8601 and use strings instead of counting second from an epoch (as in the case of most CDs).
+
+But, of course, even though we have 20 years of a head start to work on this problem, there are sure to be plenty of businesses, governments, and various other organizations and entities whom will twiddle their thumbs and plug their ears. Knowing about this bug (and how it can be resolved, easily and at scale) could be a jackpot for consultants and freelancers, alike. Now go find yourself a nice, easy solution so you can pay your kid's tuition, too!
