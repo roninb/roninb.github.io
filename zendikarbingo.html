@@ -5,9 +5,83 @@
 
 	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+	<script>
+	var predictions = {
+		1:"ob nixilis",
+		2:"fetches in CB",
+		3:"nissa comes home",
+		4:"mythic hydra",
+		5:"trap subtype",
+		6:"'roil' >=3 cards",
+		7:"'hedron' mana rock",
+		8:"CZ get all EDH goodies",
+		9:"gatewatch reference",
+		10:"landfall",
+		11:"mulyduly or x planty bois",
+		12:"hybrid mana",
+		13:"new drana",
+		14:"4th eldrazi titan",
+		15:"common land cycle",
+		16:"dinos on zendi",
+		17:"vampire nighthawk reprint",
+		18:"broken ramp",
+		19:"reference to eldrazi",
+		20:"awaken",
+		21:"ally",
+		22:"quest",
+		22:"class subtype tribal",
+		24:"kraken egg"
+	}
+	var cardSpots = [
+		"b1",
+		"b2",
+		"b3",
+		"b4",
+		"b5",
+		"i1",
+		"i2",
+		"i3",
+		"i4",
+		"i5",
+		"n1",
+		"n2",
+		"n4",
+		"n5",
+		"g1",
+		"g2",
+		"g3",
+		"g4",
+		"g5",
+		"o1",
+		"o2",
+		"o3",
+		"o4",
+		"o5"
+	]
+	function randomizePredictions(predictions) {
+		var count = predictions.length;
+		while (count !== 0) {
+			var newSpot = Math.floor(Math.random() * predictions.length);
+			var currentSpot = count -1;
+			var temp = predictions[currentSpot];
+			predictions[currentSpot] = predictions[newSpot];
+			predictions[newSpot] = temp;
+			count--;
+		}
+	}
+	function printCard(predictions) {
+		randomizePredictions(predictions);
+		console.log("done randomizing");
+		var count = 0;
+		for (const prediction in predictions) {
+			document.getElementById(cardSpots[count]).innerText = prediction.value;
+			count++;
+		}
+	}
+	</script>
 </head>
 <body>
+
 	<div class="container">
 		<div class="section">
 			<div class="row">
@@ -68,80 +142,7 @@
 		</div>
 	</div>
 
-	<script>
-	var predictions = [
-		1:"ob nixilis",
-		2:"fetches in CB",
-		3:"nissa comes home",
-		4:"mythic hydra",
-		5:"trap subtype",
-		6:"'roil' >=3 cards",
-		7:"'hedron' mana rock",
-		8:"CZ get all EDH goodies",
-	  9:"gatewatch reference",
-		10:"landfall",
-		11:"mulyduly or x planty bois",
-		12:"hybrid mana",
-		13:"new drana",
-		14:"4th eldrazi titan",
-		15:"common land cycle",
-		16:"dinos on zendi",
-		17:"vampire nighthawk reprint",
-		18:"broken ramp",
-		19:"reference to eldrazi",
-		20:"awaken",
-		21:"ally",
-		22:"quest",
-		22:"class subtype tribal",
-		24:"kraken egg"
-	]
-	var cardSpots = [
-		"b1",
-		"b2",
-		"b3",
-		"b4",
-		"b5",
-		"i1",
-		"i2",
-		"i3",
-		"i4",
-		"i5",
-		"n1",
-		"n2",
-		"n4",
-		"n5",
-		"g1",
-		"g2",
-		"g3",
-		"g4",
-		"g5",
-		"o1",
-		"o2",
-		"o3",
-		"o4",
-		"o5"
-	]
-	function randomizePredictions(predictions) {
-		var count = predictions.length;
-		while (count !== 0) {
-			var newSpot = Math.floor(Math.random() * predictions.length);
-			var currentSpot = count -1;
-			var temp = predictions[currentSpot];
-			predictions[currentSpot] = predictions[newSpot];
-			predictions[newSpot] = temp;
-			count--;
-		}
-	}
-	function printCard(predictions) {
-		randomizePredictions(predictions);
-		console.log("done randomizing");
-		var count = 0;
-		for (const prediction in predictions) {
-			document.getElementById(cardSpots[count]).innerText = prediction.value;
-			count++;
-		}
-	}
-	</script>
+
 
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
