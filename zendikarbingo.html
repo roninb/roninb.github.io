@@ -77,7 +77,7 @@
 		console.log("generating bingo card...");
 		randomizePredictions(predictions);
 		console.log("done randomizing");
-		for (var count = 0; count < 24; i++) {
+		for (var count = 0; count < 24; count++) {
 			document.getElementById(cardSpots[count]).innerText = predictions[count];
 		}
 	}
