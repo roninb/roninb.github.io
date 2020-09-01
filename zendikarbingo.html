@@ -134,9 +134,10 @@
 	}
 	function printCard(predictions) {
 		randomizePredictions(predictions);
+		console.log("done randomizing");
 		var count = 0;
 		for (const prediction in predictions) {
-			document.getElementById(cardSpots[count]).innerText = prediction;
+			document.getElementById(cardSpots[count]).innerText = prediction.value;
 			count++;
 		}
 	}
