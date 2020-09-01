@@ -126,6 +126,7 @@
 		while (count !== 0) {
 			var newSpot = Math.floor(Math.random() * predictions.length);
 			var currentSpot = count -1;
+			var temp = predictions[currentSpot];
 			predictions[currentSpot] = predictions[newSpot];
 			predictions[newSpot] = temp;
 			count--;
