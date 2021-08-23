@@ -42,11 +42,33 @@ apocalypse.prototype = {
 		fireballs = this.game.add.group();
 		fireballs.enableBody = true;
 
-		gyro.frequency = 10;
-		gyro.startTracking(function(o) {
-			player.body.velocity.x += o.gamma * 4;
-			player.body.velocity.y += o.beta * 4;
-		});
+		let gyro = null;
+		try {
+			gyro = new Accelerometer({ referenceFrame: 'device', frequency: 60});
+			gyro.addEventListener('error', event => {
+				// handle errors
+				if (event.error.name === 'NotAllowedError') {
+				} else if (event.error.name === 'NotReadableError') {
+					console.log('Cannot connect to the sensor.');
+				}
+			});
+			gyro.addEventListener('reading', () => reloadOnShake(gyro));
+			gyro.start();
+			gyro.startTracking(function(o) {
+				player.body.velocity.x += o.gamma * 4;
+				player.body.velocity.y += o.beta * 4;
+			});
+			console.log("gyro added successfully")
+		} catch (error) {
+			// constructor errors
+			if (error.name === 'SecurityError') {
+				console.log('Sensor construction was blocked by a feature policy.');
+			}else if (error.name === 'ReferenceError') {
+				console.log('Sensor is notsupported by UA');
+			} else {
+				throw error;
+			}
+		}
 	},
 
 	update : function() {

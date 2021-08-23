@@ -10,6 +10,17 @@ start.prototype = {
     this.load.spritesheet('charr', 'img/charr.png', 30, 30);
   },
   create : function(){
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.pageAlignVertically = true;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.stage.disableVisibilityChange = true;
+
+    var style = {
+      font: "48px Monospace",
+      fill: "00ff00",
+      align: "center"
+    };
+
     this.game.state.start("Splash");
   }
 }
