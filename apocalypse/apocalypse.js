@@ -57,6 +57,8 @@ apocalypse.prototype = {
 			gyro.onreading = (o) => {
 				player.body.velocity.x += o.x * 4;
 				player.body.velocity.y += o.y * 4;
+				console.log(o.x);
+				console.log(o.y);
 			};
 			gyro.start();
 			console.log("gyro added successfully")
