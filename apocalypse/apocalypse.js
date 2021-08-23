@@ -44,7 +44,7 @@ apocalypse.prototype = {
 
 		let gyro = null;
 		try {
-			gyro = new Accelerometer({ referenceFrame: 'device', frequency: 60});
+			gyro = new Gyroscope({ referenceFrame: 'device', frequency: 60});
 			gyro.addEventListener('error', event => {
 				// handle errors
 				if (event.error.name === 'NotAllowedError') {
@@ -53,11 +53,12 @@ apocalypse.prototype = {
 				}
 			});
 			gyro.addEventListener('reading', () => reloadOnShake(gyro));
+
+			gyro.onreading = (o) => {
+				player.body.velocity.x += o.x * 4;
+				player.body.velocity.y += o.y * 4;
+			};
 			gyro.start();
-			gyro.startTracking(function(o) {
-				player.body.velocity.x += o.gamma * 4;
-				player.body.velocity.y += o.beta * 4;
-			});
 			console.log("gyro added successfully")
 		} catch (error) {
 			// constructor errors
