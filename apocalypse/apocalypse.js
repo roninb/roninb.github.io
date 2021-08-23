@@ -54,11 +54,11 @@ apocalypse.prototype = {
 			});
 			gyro.addEventListener('reading', () => reloadOnShake(gyro));
 
-			gyro.onreading = (o) => {
-				player.body.velocity.x += o.x * 4;
-				player.body.velocity.y += o.y * 4;
-				console.log(o.x);
-				console.log(o.y);
+			gyro.onreading = (e) => {
+				player.body.velocity.x += e.x * 4;
+				player.body.velocity.y += e.y * 4;
+				console.log("reading gyroscope:")
+				console.log(e.x, e.y);
 			};
 			gyro.start();
 			console.log("gyro added successfully")
