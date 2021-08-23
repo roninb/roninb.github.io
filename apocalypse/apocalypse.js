@@ -52,7 +52,7 @@ apocalypse.prototype = {
 					console.log('Cannot connect to the sensor.');
 				}
 			});
-			gyro.addEventListener('reading', () => reloadOnShake(gyro));
+			gyro.addEventListener('onreading', () => reloadOnShake(gyro));
 
 			gyro.onreading = (e) => {
 				player.body.velocity.x += e.x * 4;
