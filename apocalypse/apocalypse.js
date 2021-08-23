@@ -44,7 +44,7 @@ apocalypse.prototype = {
 
 		let gyro = null;
 		try {
-			gyro = new Gyroscope({ referenceFrame: 'device', frequency: 60});
+			gyro = new Gyroscope({ referenceFrame: 'device', frequency: 15});
 			gyro.addEventListener('error', event => {
 				// handle errors
 				if (event.error.name === 'NotAllowedError') {
@@ -52,13 +52,13 @@ apocalypse.prototype = {
 					console.log('Cannot connect to the sensor.');
 				}
 			});
-			gyro.addEventListener('onreading', () => reloadOnShake(gyro));
+			gyro.addEventListener('reading', () => reloadOnShake(gyro));
 
-			gyro.onreading = (e) => {
-				player.body.velocity.x += e.x * 4;
-				player.body.velocity.y += e.y * 4;
+			gyro.onreading = () => {
+				player.body.velocity.x += gyro.x * 4;
+				player.body.velocity.y += gyro.y * 4;
 				console.log("reading gyroscope:")
-				console.log(e.x, e.y);
+				console.log(gyro.x, gyro.y);
 			};
 			gyro.start();
 			console.log("gyro added successfully")
