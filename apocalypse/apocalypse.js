@@ -45,6 +45,7 @@ apocalypse.prototype = {
 		let gyro = null;
 		try {
 			gyro = new Gyroscope({ referenceFrame: 'device', frequency: 15});
+			gyro.start();
 			gyro.addEventListener('error', event => {
 				// handle errors
 				if (event.error.name === 'NotAllowedError') {
@@ -60,7 +61,7 @@ apocalypse.prototype = {
 				console.log("reading gyroscope:")
 				console.log(gyro.x, gyro.y);
 			};
-			gyro.start();
+
 			console.log("gyro added successfully")
 		} catch (error) {
 			// constructor errors
