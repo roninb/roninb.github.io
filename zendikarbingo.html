@@ -10,6 +10,38 @@
 <body>
 	<script>
 	var predictions = [
+		"new counter types",
+		"new removal mechanic (emblems?)",
+		"popular, powerful reprint (snappy?)",
+		"new artifact token",
+		"FUGHAZI DRAGONS",
+		"returning faction mechanic",
+		"potara legendary",
+		"cast a card type off the top",
+		"mirror mechanic",
+		"old legend, new vampire",
+		"new 0-13 card",
+		"spell reduction via vampirism",
+		"impulse on red cards",
+		"upkeep sac trigger",
+		"hentai matters (kraken, leviathan, octopus, serpent)",
+		"token doubler",
+		"human death trigger",
+		"spirit and enchantment matters",
+		"new 13 card",
+		"human ranger werewolf",
+		"angel soldier",
+		"zombie scorpion",
+		"serpent egg",
+		"eye horror",
+		"legendary human peasant",
+		"legendary spirit warlock",
+		"legendary slug horror",
+		"legendary kraken horror",
+		"legendary vampire noble 1",
+		"legendary vampire noble 2",
+	]
+	var zen_predictions = [
 		"ob nixilis",
 		"fetches in CB",
 		"nissa comes home",
@@ -61,7 +93,7 @@
 		"o4",
 		"o5"
 	]
-	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "1", "2", "3","4"]
 	var orderedPredictions = new Map();
 	predictions.forEach((element, index) => orderedPredictions.set(alphabet[index], element));
 	console.log(orderedPredictions);
@@ -75,15 +107,20 @@
 			alphabet[newSpot] = temp;
 			count--;
 		}
-		console.log(alphabet);
+		console.log(alphabet.join().replace(/,/g,''));
 	}
 	function printCard(alphabet, predictions) {
 		console.log("generating bingo card...");
 		randomizePredictions(alphabet, predictions);
 		console.log("done randomizing");
 		populateCard(alphabet);
-		// add "password" to html
-		document.getElementById("savecode").innerText = alphabet.join().replace(/,/g,'');
+
+		document.cookie = "savecode=" + alphabet.join().replace(/,/g,'') + "; expires=Fri, 31 Dec 2021 23:00:00 UTC; path=/";
+
+		var cookies = document.cookie;
+		console.log(cookies);
+
+
 	}
 
 	function populateCard(order) {
@@ -91,19 +128,25 @@
 			document.getElementById(cardSpots[count]).innerText = orderedPredictions.get(order[count]);
 		}
 	}
-	// add load function to call print card with the alphabet order from previous
-	// Print cards output
+
+	// todo: make this load saved order from cookies
 	function loadCard(alphabet, predictions) {
-		// get array string
-		var order = document.getElementById("cardorder").value;
-		console.log(order);
-		// split into individual chars
+		var order = getOrder();
 		var ordered = order.split('');
-		console.log(ordered);
-		// create array
-		// load values from orderedPredicitons
 		populateCard(ordered);
 
+	}
+
+	function getOrder() {
+		var precooks = decodeURIComponent(document.cookie);
+		var cooks = precooks.split('; ');
+		console.log(cooks);
+		let result;
+		cooks.forEach(value => {
+			if (value.indexOf("savecode=") === 0) result = value.substring("savecode=".length);
+		})
+		console.log(result);
+		return result;
 	}
 	</script>
 	<div class="container">
@@ -162,7 +205,6 @@
 				<div id="o5" class="col s2"></div>
 				<div class="col s1"></div>
 			</div>
-			<input type="text" id="cardorder" />
 			<input type="submit" onclick="loadCard();" value="Generate Saved Bingo Card" />
 			<button onclick="printCard(alphabet, predictions);"> Generate New Bingo Card </button>
 			<div class="row">
