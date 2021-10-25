@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Zendikar Bingo!</title>
+	<title>Maro's Teaser Bingo!</title>
 
 	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -61,25 +61,49 @@
 		"o4",
 		"o5"
 	]
-	function randomizePredictions(predictions) {
-		var count = 24;
+	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+	var orderedPredictions = new Map();
+	predictions.forEach((element, index) => orderedPredictions.set(alphabet[index], element));
+	console.log(orderedPredictions);
+	function randomizePredictions(alphabet, predictions) {
+		var count = predictions.length;
 		while (count !== 0) {
-			var newSpot = Math.floor(Math.random() * 24);
+			var newSpot = Math.floor(Math.random() * predictions.length);
 			var currentSpot = count -1;
-			var temp = predictions[currentSpot];
-			predictions[currentSpot] = predictions[newSpot];
-			predictions[newSpot] = temp;
+			var temp = alphabet[currentSpot];
+			alphabet[currentSpot] = alphabet[newSpot];
+			alphabet[newSpot] = temp;
 			count--;
-			console.log(count);
+		}
+		console.log(alphabet);
+	}
+	function printCard(alphabet, predictions) {
+		console.log("generating bingo card...");
+		randomizePredictions(alphabet, predictions);
+		console.log("done randomizing");
+		populateCard(alphabet);
+		// add "password" to html
+		document.getElementById("savecode").innerText = alphabet.join().replace(/,/g,'');
+	}
+
+	function populateCard(order) {
+		for (var count = 0; count < 24; count++) {
+			document.getElementById(cardSpots[count]).innerText = orderedPredictions.get(order[count]);
 		}
 	}
-	function printCard(predictions) {
-		console.log("generating bingo card...");
-		randomizePredictions(predictions);
-		console.log("done randomizing");
-		for (var count = 0; count < 24; count++) {
-			document.getElementById(cardSpots[count]).innerText = predictions[count];
-		}
+	// add load function to call print card with the alphabet order from previous
+	// Print cards output
+	function loadCard(alphabet, predictions) {
+		// get array string
+		var order = document.getElementById("cardorder").value;
+		console.log(order);
+		// split into individual chars
+		var ordered = order.split('');
+		console.log(ordered);
+		// create array
+		// load values from orderedPredicitons
+		populateCard(ordered);
+
 	}
 	</script>
 	<div class="container">
@@ -138,7 +162,13 @@
 				<div id="o5" class="col s2"></div>
 				<div class="col s1"></div>
 			</div>
-			<button onclick="printCard(predictions);"> Generate Bingo Card </button>
+			<input type="text" id="cardorder" />
+			<input type="submit" onclick="loadCard();" value="Generate Saved Bingo Card" />
+			<button onclick="printCard(alphabet, predictions);"> Generate New Bingo Card </button>
+			<div class="row">
+				<div class="col s6"><p id="savecode"></p></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
