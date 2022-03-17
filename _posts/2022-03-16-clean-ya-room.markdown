@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Clean Ya Damn Room"
-date: 2022-16-03 21:22:36 -0500
 categories: tech crypt
 author: Malik Butler
 tags: crypt tech
