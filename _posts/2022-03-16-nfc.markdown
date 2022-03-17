@@ -1,0 +1,28 @@
+---
+layout: post
+title: "Near Field Combobulation"
+date: 2022-16-03 21:06:07 -0500
+categories: tech crypt
+author: Malik Butler
+tags: crypt tech
+---
+
+So this was when I was a help desk tech and my boss, the help desk manager at the time, was WAY lazier (I say this in the good, Bill Gates way). We had a lot of phishing issues and malware infested emails for a couple months (this was the university as a whole but the law school IT department does its own thing for whatever reason and isn't managed by main campus ITS). This caused us to have to reimage computers pretty frequently and at the time we were having to do it on literal DVD drives. I'd come up with a slightly faster solution using USB 3.0 flash drives as liveCDs but that only improved performance from a full actual day to image a machine and prep it for redeployment to just a full 8 hour work day.
+
+So either my boss or I, can't remember and honestly doesn't matter to the story, come up with the bang up idea to spin up a Microsoft Deployment Toolkit server so that we could, from anywhere on the law school intranet, boot from a liveCD and start an imaging task sequence off of that USB stick (which would load its like 300mb bad self into memory so we could use 1 USB to start infinitely many imaging task sequences) to save ourselves literal days of work. It would boot up the OS disk, install the OS, then run a ton of powershell/gp updates to install and update all the software and configure any system settings we wanted. This was a bit of a headache but we worked out all the kinks and had like 12 images for all the different hardware we had where drivers worked and everything.
+
+Skip forward a few months and the Sys Admin (who's arm we had to twist PRETTY hard to get that server spun up btw) is leaving. This has my boss, the current helpdesk manager, in line for the Sys Admin job (which he literally already has) and me HOPING to get the helpdesk manager job, long story short that happens and we're finally about to put the icing on the cake after a HUGE shipment of laptops comes in to replace like half the law school staff's current setup. These were ultrabooks with a ton of fancy new features and so we were stoked to roll them out as the "new face of IT's future proof machinations!!"
+
+Things went great with imaging them, we were like 60 of 65 or 65 of 70 and I get a call from one of our newer and less technologically savvy helpdesk techs (this was before I was involved in the hiring process) that they had just gotten two different reports of people's new laptops suddenly turning off... I assume this is a misunderstanding and they weren’t able to probe the end user to pry out the correct info from someone even less technologically savvy than themselves.
+
+So I call them up to see what's wrong and I totally can't figure out what they even mean. I go in, check some error logs, it seems like it was an ungraceful shutdown from what looked like a powerplug being pulled… but it's a laptop so I'm confused. I ask if they had the thing plugged in the whole time in case it was that? Both say for sure it's been docked the whole time. I go back to the office and find out like literally 6 other people have reported similarly... Nothing is the same in anyone's story but the event log is all the same. Sudden loss of power...
+
+I take the culprits back to the office and give out almost 10 loaners and me and the helpdesk manager are sweatin <expletive> bullets waiting for the other shoe to drop. I'm googling like a madman and trying to figure out if there's a battery issue or connectivity or if a russian led rolling power outage is hitting random offices when I finally give up and go to put my head down on my desk and one of the like 6 laptops on my desk finally shuts off like they described.... Nothing on my side has changed so I try to boot back up and it won't turn on. I check the power and it's plugged in and the power brick is on and I try again and it doesn't work. I try moving it over to a dock and it powers on just fine. Now I'm really defeated. Random info but no leads. As I slump back down to my desk it happens again...
+
+Now I just feel like cosmic bits are out there messing with me
+
+So I ask Rachel (the literal angel of my life at the time, she made my job so much easier than it should have been) asked me to sit up straight. Then she told me to slump back over. "Naw, it's not your posture" I think she was just trying to cheer me up but then I realized that when I was slumping down I was putting my phone in my shirt pocket on my desk, but being covered in laptops it was right on the palm rest.... Which on these newfangled keyboards... was actually an NFC reader... which of course did NOT have working drivers from Dell's website, so when we reimaged them and installed those drivers, instead of creating a little pop up box asking if you wanted to use your phone to unlock the computer in the future it just... turned it off?
+
+One support ticket and two weeks later and I could put "Tier 3 support" on my resume.
+
+And professors could put their phones near their laptops.
